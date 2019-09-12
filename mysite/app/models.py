@@ -22,7 +22,7 @@ class Client(models.Model):
     name = models.CharField(max_length=100)  # ,maxlength=100)
     fam_name = models.CharField(max_length=100, default='')  # ,maxlength=100)
     tarifa = models.TextField(choices=TARIFAS, default='A')
-
+    #reservation = models.CharField(max_length=1000,blank=True)
     ##def __str__(self):
     ##    return self.name+self.fam_name
 
@@ -85,8 +85,8 @@ class Reservation(models.Model):
     #maxi = self.models.objects.order_by('numero')
 
     numero = models.IntegerField(unique=True)
-
-    client = models.IntegerField(unique=True,blank=True,default=0)
+    client = models.ManyToManyField(Client)
+    ##client = models.IntegerField(unique=True,blank=True,default=0)
 
     #numero = maxi[-1]+1
     #name = models.CharField(max_length=100)
@@ -106,10 +106,14 @@ class Reservation(models.Model):
 
     def __str__(self):
         return str(self.numero)
-    @property
-    def link(self):
-        self.client = object.filter(Client.id == Reservation.numero)
-        self.save()
+
+    def save(self, *args, **kwargs):
+
+        super(Reservation, self).save(*args, **kwargs)
+
+    ##def link(self):
+    ##    self.client = object.filter(Client.id == Reservation.numero)
+    ##    self.save()
     # def save(self, *args, **kwargs):
     #     #cl = Client.objects.get(name=self.client)
     #     #cl.reservations.append(self.numero)
