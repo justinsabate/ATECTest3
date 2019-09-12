@@ -18,30 +18,18 @@ class Client(models.Model):
         ('N', 'Ninos'),
     ]
 
-    id = models.IntegerField(unique=True,primary_key=True)
     name = models.CharField(max_length=100)  # ,maxlength=100)
     fam_name = models.CharField(max_length=100, default='')  # ,maxlength=100)
     tarifa = models.TextField(choices=TARIFAS, default='A')
 
-    ##def __str__(self):
-    ##    return self.name+self.fam_name
-
     def __str__(self):
-        return self.name
+        return self.name+self.fam_name
 
-    def save(self, *args, **kwargs):
+    ##def save(self, *args, **kwargs):
         ##CLIENTS = [('', '')]
         ##for e in Client.objects.all():
         ##    CLIENTS.append((e.name, e.name))
-        super(Client, self).save(*args, **kwargs)
-
-    # def get_all_Clients(self):
-    #     cli = []
-    #
-    #     for e in Client.objects.all():
-    #         cli.append(e.pk)
-    #     return cli
-
+    ##    super(Client, self).save(*args, **kwargs)
     # phone_number = PhoneNumberField()
     # language = models.TextField(default='Language')
     # country = CountryField()
@@ -72,7 +60,7 @@ class Client(models.Model):
 #        Client.objects.create(country='CR')
 #        self.save()
 
-class Reservation(models.Model):
+class Reservation(Client):
     # TARIFAS = [
     #     ('A', 'Adultos'),
     #     ('E', 'Estudiantes Ticos'),
@@ -85,9 +73,6 @@ class Reservation(models.Model):
     #maxi = self.models.objects.order_by('numero')
 
     numero = models.IntegerField(unique=True)
-
-    client = models.IntegerField(unique=True,blank=True,default=0)
-
     #numero = maxi[-1]+1
     #name = models.CharField(max_length=100)
 
@@ -97,19 +82,9 @@ class Reservation(models.Model):
     ##    CLIENTS.append((e.name, e.name))
     ##client = models.TextField(choices=CLIENTS, default='')
 
-    # CLIENTS = Client.get_all_Clients(object)
-    # tup = []
-    # for e in CLIENTS :
-    #     obj = Client.objects.get(pk=e)
-    #     tup.append((obj.name,obj.name))
-    # client = models.TextField(choices=tup, default='')
-
     def __str__(self):
         return str(self.numero)
-    @property
-    def link(self):
-        self.client = object.filter(Client.id == Reservation.numero)
-        self.save()
+
     # def save(self, *args, **kwargs):
     #     #cl = Client.objects.get(name=self.client)
     #     #cl.reservations.append(self.numero)
