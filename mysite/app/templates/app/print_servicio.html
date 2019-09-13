@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+    <head>
+        <title>Atec Servicios</title>
+        <link rel="stylesheet" href="{% static 'css/agency.css' %}">
+        <style>
+                img {
+          width: 50%;
+          height: auto;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h1><a href="/">Atec_Servicios</a></h1>
+        </div>
+
+        {% for servicio in servicios %}
+            <div>
+                <h2><a href="{% url 'servicio_detail' pk=servicio.pk %}">{{ servicio.Nombre }}</a></h2>
+                <h1>Description:{{ servicio.Description|linebreaksbr }}</h1>
+                <p>Dificultad: {{ servicio.Dificultad }}</p>
+                <p>Localizacion: {{ servicio.Localizacion }}</p>
+            </div>
+        {% endfor %}
+        <div>
+            <h6><a> Esta image esta en el directory app/static/img </a></h6>
+        </div>
+    <img src="{% static 'img/tortuga.jpg' %}"/>
+    </body>
+</html>

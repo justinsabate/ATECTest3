@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'app',
     'django_countries',
     'phonenumber_field',
-
+    'address',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+GOOGLE_API_KEY = 'AIzaSyD--your-google-maps-key-SjQBE'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+MEDIA_URL ='/img/'

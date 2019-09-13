@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Client
 from .models import Reservation
+from .models import Tarea
+from .models import Servicio
 
 
 def link(modeladmin, request, queryset):
@@ -33,6 +35,16 @@ class ReservationAdmin(admin.ModelAdmin):
     ordering = ('numero',)
     search_fields = ('numero',)
     actions = [link]
+
+@admin.register(Tarea)
+class TareaAdmin(admin.ModelAdmin):
+    list_display = ('estado',)
+    ordering = ('estado',)
+
+@admin.register(Servicio)
+class ServicioAdmin(admin.ModelAdmin):
+    list_display=('Nombre',)
+    list_display = ('Nombre',)
 
 
 #admin.site.register(ReservationAdmin)

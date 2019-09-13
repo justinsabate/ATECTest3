@@ -1,0 +1,27 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/agency.css' %}">
+        <title>Servicio</title>
+        <style>
+                img {
+          width: 100%;
+          height: auto;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h1>Servicio: {{detail.Nombre}}</h1>
+            <h2>Informaciones: {{detail.Descripcion}}</h2>
+        </div>
+        <div>
+            <p>Localizacion: {{ detail.Localizacion }}</p>
+        </div>
+        <div>
+            <h6><a> Esta image esta en el directory app/static/img pero puedes cambiarla en el Admininterface </a></h6>
+        </div>
+        <img src="{{detail.image.url}}" />
+    </body>
+</html>

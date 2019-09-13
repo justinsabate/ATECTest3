@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-
+from address.models import AddressField
 
 class Client(models.Model):
     # CLIENTS = [
@@ -18,11 +18,20 @@ class Client(models.Model):
         ('N', 'Ninos'),
     ]
 
+    CATEGORIAS = [
+        ('C','Clientos'),
+        ('A', 'Agencia'),
+    ]
+
     id = models.IntegerField(unique=True,primary_key=True)
     name = models.CharField(max_length=100)  # ,maxlength=100)
     fam_name = models.CharField(max_length=100, default='')  # ,maxlength=100)
     tarifa = models.TextField(choices=TARIFAS, default='A')
-    #reservation = models.CharField(max_length=1000,blank=True)
+    phone_number = PhoneNumberField(blank=True)
+    country = CountryField(blank=True)
+    mail = models.EmailField(default='')
+    categoria = models.TextField(choices=CATEGORIAS,default='C')
+
     ##def __str__(self):
     ##    return self.name+self.fam_name
 
@@ -43,7 +52,6 @@ class Client(models.Model):
     #     return cli
 
     # phone_number = PhoneNumberField()
-    # language = models.TextField(default='Language')
     # country = CountryField()
     # mail = models.EmailField(default='')
     ##res = models.CharField(max_length=100)
@@ -138,3 +146,40 @@ class Reservation(models.Model):
     #
     # def __str__(self):
     #     return self.title
+
+class Tarea(models.Model):
+
+    ESTADOS = [
+        ('R','Realizada'),
+        ('NR', 'No Realizada'),
+        ('SB', 'Stand By'),
+        ('A', 'Esperando el Administrador que debe hacerla'),
+        ('G', 'Esperando la repuesta del guia'),
+    ]
+    estado = models.TextField(choices=ESTADOS,default='NR')
+    guia = models.CharField(blank=True,max_length=100)
+
+    staff = models.ForeignKey(
+            settings.AUTH_USER_MODEL,
+            on_delete=models.CASCADE,
+        )
+
+class Servicio(models.Model):
+
+    DIFFICULTAD = [
+        ('D','Dificil'),
+        ('N','Normal'),
+        ('F','Facil'),
+    ]
+
+    Nombre = models.CharField(max_length=1000)
+    Precio = models.PositiveIntegerField(default=0)
+    Duracion = models.DurationField(default=0)
+    Dificultad = models.TextField(default='Normal',choices=DIFFICULTAD)
+    Incluyo = models.TextField(default='')
+    Localizacion = models.TextField(default='')
+    #Localizacion = AddressField(on_delete=models.CASCADE) #un peu trop complet, à affiner
+
+    Description = models.TextField(default='')
+    image = models.ImageField(upload_to='app/static/img',default='app/static/img/header-bg.jpg')
+    #Tours = # have to create a foreignkey with the future class tours
