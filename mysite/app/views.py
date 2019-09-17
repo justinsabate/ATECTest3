@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from app.models import Servicio
+from .models import Servicio
 
 
 def print_servicio(request):

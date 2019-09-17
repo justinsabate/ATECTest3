@@ -34,11 +34,11 @@ class ReservationAdmin(admin.ModelAdmin):
     list_display = ('numero',)
     ordering = ('numero',)
     search_fields = ('numero',)
-    actions = [link]
+    #actions = [link]
 
 @admin.register(Tarea)
 class TareaAdmin(admin.ModelAdmin):
-    list_display = ('estado',)
+    list_display = ('description','estado','staff')
     ordering = ('estado',)
 
 @admin.register(Servicio)

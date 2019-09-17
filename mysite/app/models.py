@@ -5,11 +5,13 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from address.models import AddressField
 
+# class Numero_reservation(models.Model):
+#     numero = models.IntegerField(unique=True,default=1)
+#
+#     def incremente_num(self):
+#         self.numero += 1
+
 class Client(models.Model):
-    # CLIENTS = [
-    #     ('J', 'Justin'),
-    #     ('Y', 'Yeral'),
-    # ]
 
     TARIFAS = [
         ('A', 'Adultos'),
@@ -44,41 +46,12 @@ class Client(models.Model):
         ##    CLIENTS.append((e.name, e.name))
         super(Client, self).save(*args, **kwargs)
 
-    # def get_all_Clients(self):
-    #     cli = []
-    #
-    #     for e in Client.objects.all():
-    #         cli.append(e.pk)
-    #     return cli
-
-    # phone_number = PhoneNumberField()
-    # country = CountryField()
-    # mail = models.EmailField(default='')
-    ##res = models.CharField(max_length=100)
-
-
-    ##reservations = []
-
-    ##for e in reservations:
-    ##    res=res+e
-
-
-#    def __init__(self,n,fn,t):
-#        self.name = n
-#        self.fam_name = fn
-#        self.tarifa = t
-# self.country=CountryField()
-# self.phone_number=PhoneNumberField()
-
-
-#   def updateReservations(self):
-#       for e in models.Reservation:
-#           if e.client.name == self.name:
-#               self.reservations.append(e)
-
-#    def createclient(self):
-#        Client.objects.create(country='CR')
-#        self.save()
+    #    def __init__(self,n,fn,t):
+    #        self.name = n
+    #        self.fam_name = fn
+    #        self.tarifa = t
+    # self.country=CountryField()
+    # self.phone_number=PhoneNumberField()
 
 class Reservation(models.Model):
     # TARIFAS = [
@@ -91,8 +64,11 @@ class Reservation(models.Model):
     ##from .models import Client
 
     #maxi = self.models.objects.order_by('numero')
+    #obj = Numero_reservation.objects.all()
+    #for e in obj:
+    #    name = e
 
-    numero = models.IntegerField(unique=True)
+    numero = models.IntegerField(default = 0)
     client = models.ManyToManyField(Client)
     ##client = models.IntegerField(unique=True,blank=True,default=0)
 
@@ -116,7 +92,7 @@ class Reservation(models.Model):
         return str(self.numero)
 
     def save(self, *args, **kwargs):
-
+        #Numero_reservation.incremente_num()
         super(Reservation, self).save(*args, **kwargs)
 
     ##def link(self):
@@ -149,6 +125,7 @@ class Reservation(models.Model):
 
 class Tarea(models.Model):
 
+    description = models.TextField(default='')
     ESTADOS = [
         ('R','Realizada'),
         ('NR', 'No Realizada'),
@@ -157,6 +134,7 @@ class Tarea(models.Model):
         ('G', 'Esperando la repuesta del guia'),
     ]
     estado = models.TextField(choices=ESTADOS,default='NR')
+
     guia = models.CharField(blank=True,max_length=100)
 
     staff = models.ForeignKey(
