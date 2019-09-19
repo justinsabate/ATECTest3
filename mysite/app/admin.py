@@ -1,51 +1,149 @@
 from django.contrib import admin
-from .models import Client
-from .models import Reservation
-from .models import Tarea
-from .models import Servicio
+from . import models
+from .forms import RequiredInlineFormSet
 
+#### USEFUL THINGS ####
 
-def link(modeladmin, request, queryset):
-    queryset.update(client=3)
-    #cli = Client.object.filter(id=queryset.get(modeladmin.client))
-    #cli.res=queryset.numero
-link.short_description = "link client 0 to the selected reservation"
+### IMPORTS ###
+# from mysite.app.models_OLD import Client
 
-class ReservationInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
-    model = Reservation.client.through
-
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name','fam_name','tarifa')
-    ordering = ('name',)
-    search_fields = ('name','fam_name','tarifa')
-    inlines = [
-        ReservationInline, #nous permet d'afficher les réservations dans les clients
-    ]
+### TO CREATE AN ACTION ###
+# def link(modeladmin, request, queryset):
+#     queryset.update(client=3)
+#     #cli = Client.object.filter(id=queryset.get(modeladmin.client))
+#     #cli.res=queryset.numero
+# link.short_description = "link client 0 to the selected reservation"
 
 # @admin.register(Reservation)
+# class ReservationAdmin(admin.ModelAdmin):
+#     actions = [link]
+
+### TO PRINT AN INFORMATION (here manytomany) IN ANOTHER CLASS
+# class ReservationInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
+#     model = Reservation.client.through
+#
+# @admin.register(Client)
 # class ClientAdmin(admin.ModelAdmin):
-#     list_display = ('numero','client')
-#     ordering = ('numero',)
-#     search_fields = ('numero','client')
+#     inlines = [
+#         ReservationInline, #nous permet d'afficher les réservations dans les clients
+#     ]
 
-@admin.register(Reservation)
-class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('numero',)
-    ordering = ('numero',)
-    search_fields = ('numero',)
-    #actions = [link]
+# ### TO ORDER AND SEARCH ###
+# @admin.register(Tarea)
+# class TareaAdmin(admin.ModelAdmin):
+#     list_display = ('description','estado','staff')
+#     ordering = ('estado',)
+#     search_fields = ('name', 'fam_name', 'tarifa')
+import os
+from .models.product_classes import Product,AttributeProduct,Location,PriceProduct,ImageProduct,StockProduct, Rate
+from .models.general import General,Action,get_all_logged_in_users
+from .models.person_classes import LanguagePerson,Person,Mail,Phone,TypePerson
+# class Type_ProductInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
+#     model = Product.type.through
 
-@admin.register(Tarea)
-class TareaAdmin(admin.ModelAdmin):
-    list_display = ('description','estado','staff')
-    ordering = ('estado',)
-
-@admin.register(Servicio)
-class ServicioAdmin(admin.ModelAdmin):
-    list_display=('Nombre',)
-    list_display = ('Nombre',)
+#admin.site.register(State)
+import shutil
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 
-#admin.site.register(ReservationAdmin)
-#admin.site.register(Reservation)
+@receiver(pre_delete)
+def delete_repo(sender, instance, **kwargs):
+    ### Get the user
+    users = get_all_logged_in_users()
+    user = ''
+    for e in users:
+        user += str(e)
+
+
+    ### Create the action
+    try:
+        classes = instance.get_cname()
+    except:
+        print('we are trying to delete a non model object, maybe the session is closing') #for example the Sessin
+    else:
+        if classes != 'General': #because each time we delete an object we delete the general object linked to it
+            s = str(instance.last_modification) + ' ' + user + ' deleted element ' + str(
+                instance.id) + ' of class ' + instance.get_cname()
+            print(s)
+            Action.objects.create(act=s)
+
+class GeneralAdmin(admin.ModelAdmin):
+    readonly_fields = ('creation', 'last_modification','id')
+
+@admin.register(Action)
+class ActionAdmin(GeneralAdmin):
+    readonly_fields = ('action','creation', 'last_modification','id','act','state')
+
+@admin.register(PriceProduct)
+class PriceProduct(GeneralAdmin):
+    list_display = ('year',)
+
+@admin.register(AttributeProduct)
+class AttributeProduct(GeneralAdmin):
+    list_display = ('text',)
+
+@admin.register(Location)
+class Location(GeneralAdmin):
+    list_display = ('address',)
+
+@admin.register(StockProduct)
+class StockProduct(GeneralAdmin):
+    list_display = ('nb_stock',)
+
+@admin.register(ImageProduct)
+class ImageProduct(GeneralAdmin):
+    list_display = ('short_title',)
+
+@admin.register(Rate)
+class RateAdmin(GeneralAdmin):
+    list_display = ('text',)
+
+@admin.register(Product) ###Nous permet d'hériter des fields readonly de generaladmin
+class ProductAdmin(GeneralAdmin):
+    list_display = ('name',)
+
+@admin.register(LanguagePerson)
+class LanguagePerson(GeneralAdmin):
+    list_display = ('lang',)
+
+@admin.register(TypePerson)
+class TypePersonAdmin(GeneralAdmin):
+    list_display = ('type',)
+
+@admin.register(Mail)
+class MailAdmin(GeneralAdmin):
+    list_display = ('email',)
+
+class MailInline(admin.StackedInline):
+    model = models.Mail
+    fk_name = 'per'
+    extra = 1
+    readonly_fields = ('creation', 'last_modification',)
+    formset = RequiredInlineFormSet #to set a required foreign key
+
+@admin.register(Phone)
+class PhoneAdmin(GeneralAdmin):
+    list_display = ('tel',)
+
+class PhoneInline(admin.StackedInline):
+    model = models.Phone
+    fk_name = 'per'
+    extra = 1
+    readonly_fields = ('creation', 'last_modification',)
+    formset = RequiredInlineFormSet
+
+
+@admin.register(Person)
+class PersonAdmin(GeneralAdmin):
+    list_display = ('name',)
+    inlines = [
+        MailInline,
+        PhoneInline,
+    ]
+
+
+
+
+
+
