@@ -2,31 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd37bdf9-1988-40df-abc3-80f07d647039" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mysite/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/admi_OLD.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/models/general.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/models/person_classes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/app/models/product_classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysite/app/models/reservation_classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0002_auto_20190912_1022.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0003_client_res.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0004_auto_20190912_1132.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0005_client_country.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0006_auto_20190912_1223.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0007_auto_20190912_1304.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0008_auto_20190913_0952.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0009_auto_20190913_0952.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0010_auto_20190913_1029.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0011_servicio_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0012_tarea_description.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/models_OLD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0002_auto_20190918_1343.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0003_general_modified.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0004_auto_20190918_1414.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/migrations/0005_auto_20190919_1044.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/models/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/models/general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/models/person_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/models/person_classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app/models/product_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app/models/product_classes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,10 +25,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/person_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-575">
-              <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
+            <state relative-caret-position="415">
+              <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/app/models_OLD.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="32" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,11 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/product_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1087">
-              <caret line="53" column="86" selection-start-line="53" selection-start-column="86" selection-end-line="53" selection-end-column="86" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -64,16 +59,16 @@
         <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+              <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="57" column="48" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
+            <state relative-caret-position="316">
+              <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <element signature="e#317#787#0" />
@@ -82,13 +77,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="68" column="40" lean-forward="true" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+            <state relative-caret-position="584">
+              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/app/models/reservation_classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-440">
+              <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#1676#1735#0" />
               </folding>
             </state>
           </provider>
@@ -102,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/admi_OLD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="133">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -119,30 +127,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>u</find>
-      <find>btn-primary</find>
-      <find>js</find>
-      <find>static</find>
-      <find>/css/agency.min.css</find>
-      <find>page</find>
-      <find>fa</find>
-      <find>span</find>
-      <find>java</find>
       <find>stat</find>
       <find>key</find>
-      <find>forei</find>
       <find>max</find>
       <find>min</find>
       <find>date</find>
       <find>product</find>
       <find>price</find>
       <find>fore</find>
-      <find>general</find>
       <find>foreign</find>
       <find>datefi</find>
-      <find>fo</find>
-      <find>try</find>
       <find>LanguagePerson</find>
+      <find>on_de</find>
+      <find>timezo</find>
+      <find>location</find>
+      <find>TypePerson</find>
+      <find>unique=True</find>
+      <find>try</find>
+      <find>nothin</find>
+      <find>noth</find>
+      <find>nothing</find>
+      <find>Person</find>
+      <find>forei</find>
+      <find>admin</find>
+      <find>User</find>
+      <find>assigner_auto</find>
+      <find>for</find>
+      <find>fo</find>
+      <find>name</find>
+      <find>general</find>
+      <find>user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,11 +180,12 @@
         <option value="$PROJECT_DIR$/mysite/app/forms.py" />
         <option value="$PROJECT_DIR$/mysite/mysite/settings.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/actions.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/product_classes.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/person_classes.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/__init__.py" />
         <option value="$PROJECT_DIR$/mysite/app/admin.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/reservation_classes.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/general.py" />
-        <option value="$PROJECT_DIR$/mysite/app/models/person_classes.py" />
-        <option value="$PROJECT_DIR$/mysite/app/models/product_classes.py" />
       </list>
     </option>
   </component>
@@ -260,7 +275,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="720" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24177396" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -273,8 +287,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3375796" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.3375796" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007153" side_tool="true" weight="0.3375796" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -422,48 +436,30 @@
     <entry file="file://$PROJECT_DIR$/mysite/app/models/actions.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
+    <entry file="file://$PROJECT_DIR$/mysite/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/admi_OLD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        <state relative-caret-position="133">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models_OLD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state>
+          <caret selection-end-column="32" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/admi_OLD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="57" column="48" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <element signature="e#317#787#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models/person_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-575">
-          <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
+        <state relative-caret-position="415">
+          <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -472,20 +468,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models/product_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1087">
-          <caret line="53" column="86" selection-start-line="53" selection-start-column="86" selection-end-line="53" selection-end-column="86" />
+        <state relative-caret-position="105">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/reservation_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="68" column="40" lean-forward="true" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+        <state relative-caret-position="-440">
+          <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#1676#1735#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#317#787#0" />
           </folding>
         </state>
       </provider>

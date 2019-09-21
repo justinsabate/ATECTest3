@@ -36,8 +36,9 @@ from .forms import RequiredInlineFormSet
 #     search_fields = ('name', 'fam_name', 'tarifa')
 import os
 from .models.product_classes import Product,AttributeProduct,Location,PriceProduct,ImageProduct,StockProduct, Rate
-from .models.general import General,Action,get_all_logged_in_users
+from .models.general import General,Action,get_all_logged_in_users,Task
 from .models.person_classes import LanguagePerson,Person,Mail,Phone,TypePerson
+from .models.reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation
 # class Type_ProductInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
 #     model = Product.type.through
 
@@ -62,7 +63,7 @@ def delete_repo(sender, instance, **kwargs):
     except:
         print('we are trying to delete a non model object, maybe the session is closing') #for example the Sessin
     else:
-        if classes != 'General': #because each time we delete an object we delete the general object linked to it
+        if classes != 'General' and classes != 'Action': #because each time we delete an object we delete the general object linked to it
             s = str(instance.last_modification) + ' ' + user + ' deleted element ' + str(
                 instance.id) + ' of class ' + instance.get_cname()
             print(s)
@@ -136,7 +137,7 @@ class PhoneInline(admin.StackedInline):
 
 @admin.register(Person)
 class PersonAdmin(GeneralAdmin):
-    list_display = ('name',)
+    list_display = ('name','type')
     inlines = [
         MailInline,
         PhoneInline,
@@ -144,6 +145,40 @@ class PersonAdmin(GeneralAdmin):
 
 
 
+@admin.register(PaymentReservation)
+class PaymentReservationAdmin(GeneralAdmin):
+    list_display = ()
 
+class PaymentReservationInLine(admin.StackedInline):
+    model = models.PaymentReservation
+    fk_name = 'payment_reservation'
+    extra = 0
+    readonly_fields = ('creation', 'last_modification',)
 
+@admin.register(TypePayment)
+class TypePaymentReservationAdmin(GeneralAdmin):
+    list_display = ()
 
+@admin.register(LineReservation)
+class LineReservationAdmin(GeneralAdmin):
+    list_display = ()
+
+class LineReservationInLine(admin.StackedInline):
+    model = models.LineReservation
+    fk_name = 'line_reservation'
+    extra = 0
+    readonly_fields = ('creation', 'last_modification',)
+
+@admin.register(Reservation)
+class ReservationAdmin(GeneralAdmin):
+    list_display = ('number_reservation',)
+    readonly_fields = ('payment_state','creation', 'last_modification',)
+    inlines = [
+        LineReservationInLine,
+        PaymentReservationInLine,
+    ]
+
+@admin.register(Task)
+class TaskAdmin(GeneralAdmin):
+    list_display = ('assigned_date', 'description', 'assigned_user','assigner_auto')
+    readonly_fields = ('creation', 'last_modification', 'assigner_auto')

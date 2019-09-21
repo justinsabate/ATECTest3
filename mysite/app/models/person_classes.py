@@ -8,7 +8,7 @@ from .product_classes import Location,Product
 class LanguagePerson (General):
     def __str__(self):
         return self.lang
-    lang = models.CharField(default='ESPANOL',max_length=100,unique=True)
+    lang = models.CharField(default='ESPANOL',max_length=100)
 
     def get_cname(self):
         class_name = 'LanguagePerson'
@@ -17,7 +17,7 @@ class LanguagePerson (General):
 class TypePerson(General):
     def __str__(self):
         return self.type
-    type = models.CharField(default='CLIENTE',max_length=100,unique=True)
+    type = models.CharField(default='CLIENTE',max_length=100)
 
     def get_cname(self):
         class_name = 'TypePerson'
@@ -26,10 +26,11 @@ class TypePerson(General):
 
 class Person(General):
     def __str__(self):
-        return self.name
+        return '['+str(self.type)+'] '+self.name
     NIN = models.IntegerField(blank=True,null=True)#National identification number
     name = models.CharField(default='', max_length=100)
     fam_name = models.CharField(default='', max_length=100, blank=True, null=True)
+    date_birth = models.DateField(null=True, blank=True)
     date_birth = models.DateField(null=True, blank=True)
     nationality = CountryField(null=True,blank=True)
     name_Hotel = models.TextField(default='',blank=True,null=True)
@@ -40,7 +41,7 @@ class Person(General):
     language = models.ManyToManyField(LanguagePerson, blank=True)
     type = models.ForeignKey(
         TypePerson,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.PROTECT,
         blank=True,
     )
     product = models.ManyToManyField(Product, blank=True)

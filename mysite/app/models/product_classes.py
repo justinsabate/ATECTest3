@@ -51,7 +51,7 @@ class AttributeProduct(General):
 class Location(General):
     def __str__(self):
         return str(self.address)
-    address = AddressField(blank=True, null=True, on_delete=models.CASCADE,unique=True)
+    address = AddressField(blank=True, null=True, on_delete=models.CASCADE)
 
     def get_cname(self):
         class_name = 'Location'
