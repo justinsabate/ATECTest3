@@ -55,26 +55,42 @@ class General(models.Model):
 
         ### Get the Class
         classes = self.get_cname()
-        print('detected classe' + classes)
+        print('detected classe ' + classes)
         # auto = '' #='' if the action has been made by the user and 'automatic action' if it is an automatic saving in another function
         if classes == 'Task':
             self.assigner_auto = user
             print(user+' registered as assigner of task')
 
-        ### Update the PaymentState
+
+        ### Save the object
+
+
         if classes == 'LineReservation':
             this_reservation = self.line_reservation
             # auto = \
             self.updt_payment_state(this_reservation)
 
+            ###we have to save the reservation now
+
+            #super(General, self).save(*args, **kwargs)
+            #this_reservation.save(*args, **kwargs)
         elif classes == 'PaymentReservation':
             this_reservation = self.payment_reservation
             # auto = \
             self.updt_payment_state(this_reservation)
 
-        ### Save the object
-        super(General, self).save(*args, **kwargs)
+            ###we have to save the reservation now
 
+            #super(General, self).save(*args, **kwargs)
+            #this_reservation.save(*args, **kwargs)
+        elif classes == 'Reservation':
+            this_reservation = self
+
+            self.updt_payment_state()
+            print('update of totals and payment state')
+            print(str(self.total_to_pay)+str(self.total_payments))
+
+        super(General, self).save(*args, **kwargs)
 
         ### Create the action
         if classes != 'Action': #because we create an action and don't want an action to register that we created an action
@@ -118,11 +134,18 @@ class Action(General):
         return str(self.act)
 
 class Task(General):
+    STATE = [
+        ('D', 'DONE'),
+        ('TD', 'TODO'),
+        ('SB', 'STANDBY'),
+    ]
+
     description = models.TextField(default='')
     assigned_date = models.DateField(default=timezone.now) #readonly
     delivery_date = models.DateField(blank=True, null=True)
     cause = models.TextField(blank=True, null=True)
     assigner_auto = models.CharField(max_length=100, null=True, blank=True)
+    task_state = models.TextField(choices=STATE, default='TD')
 
     ### KEYS
     assigned_user = models.ForeignKey(

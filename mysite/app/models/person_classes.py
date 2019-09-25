@@ -14,7 +14,7 @@ class LanguagePerson (General):
         class_name = 'LanguagePerson'
         return class_name
 
-class TypePerson(General):
+class TypePerson(General): ##ninos o adultos
     def __str__(self):
         return self.type
     type = models.CharField(default='CLIENTE',max_length=100)
@@ -30,7 +30,6 @@ class Person(General):
     NIN = models.IntegerField(blank=True,null=True)#National identification number
     name = models.CharField(default='', max_length=100)
     fam_name = models.CharField(default='', max_length=100, blank=True, null=True)
-    date_birth = models.DateField(null=True, blank=True)
     date_birth = models.DateField(null=True, blank=True)
     nationality = CountryField(null=True,blank=True)
     name_Hotel = models.TextField(default='',blank=True,null=True)
