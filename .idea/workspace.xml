@@ -22,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/person_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-212">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+            <state relative-caret-position="238">
+              <caret line="74" column="22" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="22" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -46,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/product_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-392">
-              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+            <state relative-caret-position="15">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -58,11 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="97" lean-forward="true" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
-              <folding>
-                <element signature="e#287#393#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -70,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+            <state relative-caret-position="119">
+              <caret line="54" column="31" lean-forward="true" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -79,20 +76,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-445">
-              <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+            <state relative-caret-position="247">
+              <caret line="270" column="23" selection-start-line="270" selection-start-column="23" selection-end-line="270" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/app/models/reservation_classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="279" column="34" selection-start-line="279" selection-start-column="34" selection-end-line="279" selection-end-column="34" />
+            <state relative-caret-position="213">
+              <caret line="89" column="77" selection-start-line="89" selection-start-column="77" selection-end-line="89" selection-end-column="77" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <element signature="e#506#624#0" />
@@ -127,36 +127,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>datefi</find>
-      <find>LanguagePerson</find>
-      <find>on_de</find>
-      <find>timezo</find>
-      <find>location</find>
-      <find>TypePerson</find>
-      <find>unique=True</find>
-      <find>try</find>
-      <find>nothin</find>
-      <find>noth</find>
-      <find>nothing</find>
-      <find>Person</find>
-      <find>forei</find>
-      <find>admin</find>
-      <find>User</find>
-      <find>assigner_auto</find>
-      <find>user</find>
-      <find>stand</find>
-      <find>for</find>
-      <find>name</find>
-      <find>SB</find>
-      <find>sell</find>
-      <find>line</find>
-      <find>+=</find>
       <find>str</find>
-      <find>type</find>
-      <find>get_all_logged_in_users</find>
+      <find>percent_</find>
+      <find>str_</find>
+      <find>payment</find>
+      <find>lineXrate</find>
+      <find>payment_re</find>
+      <find>sub_total_to_pay</find>
+      <find>subtotal_to_pay</find>
+      <find>discoun</find>
+      <find>cost</find>
+      <find>lineReservation</find>
+      <find>DECIMAL</find>
+      <find>price</find>
+      <find>price =</find>
+      <find>discounted =</find>
+      <find>paymentXreservation</find>
+      <find>lineXreservation</find>
+      <find>paymentX</find>
+      <find>reservation</find>
+      <find>foreign</find>
       <find>fo</find>
-      <find>general</find>
-      <find>year</find>
+      <find>reservation.objects.g</find>
+      <find>class lineReservation</find>
+      <find>up</find>
+      <find>line</find>
+      <find>forei</find>
+      <find>Rack</find>
+      <find>ratediscount</find>
+      <find>PriceProduct</find>
+      <find>action</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,12 +181,12 @@
         <option value="$PROJECT_DIR$/mysite/mysite/settings.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/actions.py" />
         <option value="$PROJECT_DIR$/mysite/app/__init__.py" />
-        <option value="$PROJECT_DIR$/mysite/app/models/person_classes.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/__init__.py" />
-        <option value="$PROJECT_DIR$/mysite/app/admin.py" />
-        <option value="$PROJECT_DIR$/mysite/app/models/general.py" />
-        <option value="$PROJECT_DIR$/mysite/app/models/reservation_classes.py" />
         <option value="$PROJECT_DIR$/mysite/app/models/product_classes.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/general.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/person_classes.py" />
+        <option value="$PROJECT_DIR$/mysite/app/models/reservation_classes.py" />
+        <option value="$PROJECT_DIR$/mysite/app/admin.py" />
       </list>
     </option>
   </component>
@@ -276,8 +276,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="720" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24177396" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24177396" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -288,7 +289,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.4789809" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.2955414" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007153" side_tool="true" weight="0.3375796" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -444,6 +445,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models_OLD.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -454,40 +458,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/person_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-445">
-          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="97" lean-forward="true" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
-          <folding>
-            <element signature="e#287#393#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+        <state relative-caret-position="238">
+          <caret line="74" column="22" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="22" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/app/models/person_classes.py">
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-212">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state relative-caret-position="75">
+          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/models/general.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="54" column="31" lean-forward="true" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -496,8 +487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models/product_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state relative-caret-position="15">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -506,12 +497,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/app/models/reservation_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="279" column="34" selection-start-line="279" selection-start-column="34" selection-end-line="279" selection-end-column="34" />
+        <state relative-caret-position="213">
+          <caret line="89" column="77" selection-start-line="89" selection-start-column="77" selection-end-line="89" selection-end-column="77" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <element signature="e#506#624#0" />
             <element signature="e#1676#1735#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/app/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="270" column="23" selection-start-line="270" selection-start-column="23" selection-end-line="270" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

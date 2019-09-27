@@ -7,6 +7,8 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from address.models import AddressField
 from .general import General
+#from.reservation_classes import Tax
+#from .person_classes import Person
 
 ### USEFUL CODE ###
 
@@ -85,16 +87,23 @@ class ImageProduct(General):
         return class_name
 
 
-class Rate(General):
-    def __str__(self):
-        return self.text
-    text = models.CharField(max_length=100)
-    percentage = models.IntegerField(default=0,validators=[MaxValueValidator(100),MinValueValidator(0)])
+
+
+class Tax(General):
+    text = models.TextField(default='')
+    percentage = models.IntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(100)])
+
+    YEAR_CHOICES = []
+    for r in range(1980, (datetime.datetime.now().year + 10)):
+        YEAR_CHOICES.append((r, r))
+    year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
     def get_cname(self):
-        class_name = 'Rate'
+        class_name = 'Tax'
         return class_name
 
+    def __str__(self):
+        return str(self.percentage)+'% '+str(self.year)
 
 class Product(General):
 
@@ -118,7 +127,7 @@ class Product(General):
     location = models.ManyToManyField(Location, blank=True)
     stock = models.ForeignKey(
         StockProduct,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
@@ -129,39 +138,5 @@ class Product(General):
         return class_name
 
 
-class PriceProduct(General):
-    ### Prices In Dolars, it may be possible to get a "currency" object and to convert, if necessary
 
-    def __str__(self):
-        st = 'YEAR ' + str(self.year) + ' ' + 'PRICE ' + str(self.net-(self.net*self.percent_discount/100)) +'$ start'+ str(self.date_start_offer) + '-end' + str(self.date_end_offer)
-        return st
-    CATEGORY_CHOICES = [
-        ('N', 'NINOS'),
-        ('A','ADULTOS'),
-    ]
-    YEAR_CHOICES = []
-    for r in range(1900, (datetime.datetime.now().year + 10)):
-        YEAR_CHOICES.append((r, r))
-
-    year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year)
-    net = models.DecimalField(default=0, max_digits=6, decimal_places=3, validators=[MinValueValidator(0.0)])
-    rack = models.DecimalField(default=0, max_digits=6, decimal_places=3, validators=[MinValueValidator(0.0)])
-    date_start_offer = models.DateField(default=timezone.now)
-    date_end_offer = models.DateField(blank=True, null=True)
-    information = models.TextField(blank=True, null=True)
-
-    percent_discount = models.IntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    category = models.TextField(choices=CATEGORY_CHOICES, default='A')
-
-    ### KEYS
-    price_product = models.ForeignKey(
-        Product,
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE
-    )
-
-    def get_cname(self):
-        class_name = 'PriceProduct'
-        return class_name
 

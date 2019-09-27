@@ -10,7 +10,8 @@ from django.utils import timezone
 #from .reservation_classes import Reservation,PaymentReservation,LineReservation
 
 ### To get the authenticated user https://stackoverflow.com/questions/2723052/how-to-get-the-list-of-the-authenticated-users
-def get_all_logged_in_users():
+
+def get_all_logged_in_users(): ###comment on 1st launch beacuse sessions does not exist
     # Query all non-expired sessions
     # use timezone.now() instead of datetime.now() in latest versions of Django
     sessions = Session.objects.filter(expire_date__gte=timezone.now())
@@ -25,23 +26,6 @@ def get_all_logged_in_users():
     return User.objects.filter(id__in=uid_list)
 
 class General(models.Model):
-
-    def get_cname(self):
-        class_name = 'General'
-        return class_name
-
-    id = models.AutoField(primary_key=True) # Auto incrementation, unique
-
-    DISABLED = '0'
-    ENABLED = '1'
-    STATE = [
-        (DISABLED, 'DISABLED'),
-        (ENABLED, 'ENABLED'),
-    ]
-    state = models.TextField(choices=STATE, default=ENABLED)
-    creation = models.DateTimeField(default=timezone.now)
-    last_modification = models.DateTimeField(default=timezone.now)
-    #modifier = User.get_username
 
 
     def save(self, *args, **kwargs):
@@ -63,34 +47,30 @@ class General(models.Model):
 
 
         ### Save the object
-
+        super(General, self).save(*args, **kwargs) ### to create the other classes
 
         if classes == 'LineReservation':
-            this_reservation = self.line_reservation
+
             # auto = \
-            self.updt_payment_state(this_reservation)
+            self.updt_payment_state()
 
             ###we have to save the reservation now
 
             #super(General, self).save(*args, **kwargs)
             #this_reservation.save(*args, **kwargs)
         elif classes == 'PaymentReservation':
-            this_reservation = self.payment_reservation
             # auto = \
-            self.updt_payment_state(this_reservation)
+            self.updt_payment_state()
 
             ###we have to save the reservation now
 
             #super(General, self).save(*args, **kwargs)
             #this_reservation.save(*args, **kwargs)
         elif classes == 'Reservation':
-            this_reservation = self
 
             self.updt_payment_state()
             print('update of totals and payment state')
             print(str(self.total_to_pay)+str(self.total_payments))
-
-        super(General, self).save(*args, **kwargs)
 
         ### Create the action
         if classes != 'Action': #because we create an action and don't want an action to register that we created an action
@@ -99,29 +79,23 @@ class General(models.Model):
             #Action.objects.create(act=auto + s)
             Action.objects.create(act=s)
 
+    def get_cname(self):
+        class_name = 'General'
+        return class_name
 
+    id = models.AutoField(primary_key=True) # Auto incrementation, unique
 
+    DISABLED = '0'
+    ENABLED = '1'
+    STATE = [
+        (DISABLED, 'DISABLED'),
+        (ENABLED, 'ENABLED'),
+    ]
+    state = models.TextField(choices=STATE, default=ENABLED)
+    creation = models.DateTimeField(default=timezone.now)
+    last_modification = models.DateTimeField(default=timezone.now)
+    #modifier = User.get_username
 
-
-#### ajouter eliminar et les get_name dans chaque classe
-#
-# def delete(self):
-#     ### Get the user
-#     users = get_all_logged_in_users()
-#     user = ''
-#     for e in users:
-#         user += str(e)
-#
-#     ### Delete the object
-#     super(self).delete()
-#
-#     ### Create the action
-#     classes = self.get_cname()
-#     if classes != 'Action':
-#         s = str(self.last_modification) + user + ' deleted element ' + str(
-#             self.id) + ' of class ' + self.get_cname()
-#         print(s)
-#         Action.objects.create(act=s)
 
 class Action(General):
     act = models.TextField(default='')
@@ -150,7 +124,7 @@ class Task(General):
     ### KEYS
     assigned_user = models.ForeignKey(
             settings.AUTH_USER_MODEL,
-            on_delete=models.CASCADE,
+            on_delete=models.SET_NULL,
             null=True
         )
 

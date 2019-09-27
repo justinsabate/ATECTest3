@@ -36,39 +36,85 @@ from .forms import RequiredInlineFormSet
 #     ordering = ('estado',)
 #     search_fields = ('name', 'fam_name', 'tarifa')
 import os
-from .models.product_classes import Product,AttributeProduct,Location,PriceProduct,ImageProduct,StockProduct, Rate
+from .models.product_classes import Product,AttributeProduct,Location,ImageProduct,StockProduct,Tax
 from .models.general import General,Action,Task,get_all_logged_in_users
 from .models.person_classes import LanguagePerson,Person,Mail,Phone,TypePerson
-from .models.reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation,Tax
+from .models.reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount
 # class Type_ProductInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
 #     model = Product.type.through
 
 #admin.site.register(State)
 import shutil
-from django.db.models.signals import pre_delete
+from django.db.models.signals import pre_delete, post_save,post_delete
 from django.dispatch import receiver
 
+@receiver(pre_delete)
+def delete_repo(sender, instance, **kwargs):
+    ### Get the user
+    users = get_all_logged_in_users()
+    user = ''
+    for e in users:
+        user += str(e)
 
-# @receiver(pre_delete)
+
+    ### Create the action
+    try:
+        classes = instance.get_cname()
+    except:
+        print('we are trying to delete a non model object, maybe the session is closing') #for example the Sessin
+    else:
+        if classes != 'General' and classes != 'Action': #because each time we delete an object we delete the general object linked to it
+            s = str(instance.last_modification) + ' ' + user + ' deleted element ' + str(
+                instance.id) + ' of class ' + instance.get_cname()
+            print(s)
+            Action.objects.create(act=s)
+
+
+        # if classes == 'LineReservation':
+        #
+        # #     global res
+        #     res = Reservation.objects.get(lineXreservation=instance)
+        #     res.total_to_pay = 0
+
+        #     #res.save()
+        #     print('resa line saved')
+        # if classes == 'PaymentReservation':
+        #     global res
+        #     res = Reservation.objects.get(paymentXreservation=instance)
+        #     #res.save() # to update payments, sell prices, and payment states
+        #     print('resa payment saved')
+
+@receiver(post_delete)
+def delete_repo(sender, instance, *args, **kwargs):
+    try:
+        classes = instance.get_cname()
+    except:
+        print('we are trying to delete a non model object, maybe the session is closing') #for example the Sessin
+    else:
+        if classes == 'LineReservation' or classes == 'Reservation' or classes == 'PaymentReservation' :
+            all_resa = Reservation.objects.all()
+            for r in all_resa:
+                r.updt_payment_state() ## doesnot work in a signal (args and kwargs) to save an object
+        # if classes == 'LineReservation' :
+        #     instance.updt_payment_state(*args, **kwargs)
+        # elif classes == 'Reservation' :
+        #     instance.updt_payment_state(*args, **kwargs)
+        # elif classes == 'PaymentReservation':
+        #     instance.updt_payment_state(*args, **kwargs)
+
+
+
+
+# @receiver(post_delete)
 # def delete_repo(sender, instance, **kwargs):
-#     ### Get the user
-#     users = get_all_logged_in_users()
-#     user = ''
-#     for e in users:
-#         user += str(e)
-#
-#
-#     ### Create the action
 #     try:
 #         classes = instance.get_cname()
 #     except:
-#         print('we are trying to delete a non model object, maybe the session is closing') #for example the Sessin
+#         print('class not determined')
 #     else:
-#         if classes != 'General' and classes != 'Action': #because each time we delete an object we delete the general object linked to it
-#             s = str(instance.last_modification) + ' ' + user + ' deleted element ' + str(
-#                 instance.id) + ' of class ' + instance.get_cname()
-#             print(s)
-#             Action.objects.create(act=s)
+#         if classes == 'PaymentReservation' or classes == 'LineReservation':
+#             res.save()
+
 
 ### GENERAL.PY ###
 class GeneralAdmin(admin.ModelAdmin):
@@ -99,6 +145,7 @@ class TaskAdmin(GeneralAdmin):
             'cause')
     list_display = ('task_state', 'assigned_date', 'description', 'assigned_user','assigner_auto')
     ordering = ('task_state', )
+    search_fields = ('description',)
 
 ### PRODUCT_CLASSES.PY ###
 
@@ -112,7 +159,7 @@ class Location(GeneralAdmin):
 
 @admin.register(PriceProduct)
 class PriceProduct(GeneralAdmin):
-    list_display = ('year','percent_discount','information','date_start_offer','date_end_offer')
+    list_display = ('year','information','date_start_offer','date_end_offer')
 
 class PriceInLine(admin.StackedInline):
     model = models.PriceProduct
@@ -130,9 +177,6 @@ class StockProduct(GeneralAdmin):
 class ImageProduct(GeneralAdmin):
     list_display = ('short_title',)
 
-@admin.register(Rate)
-class RateAdmin(GeneralAdmin):
-    list_display = ('text','percentage')
 
 @admin.register(Product) ###Nous permet d'hériter des fields readonly de generaladmin
 class ProductAdmin(GeneralAdmin):
@@ -140,6 +184,18 @@ class ProductAdmin(GeneralAdmin):
     inlines = [
         PriceInLine,
     ]
+
+@admin.register(Rate)
+class RateAdmin(GeneralAdmin):
+    list_display = ('text','percentage')
+
+@admin.register(AgeDiscount)
+class AgeDiscountAdmin(GeneralAdmin):
+    list_display = ('text','percentage')
+
+@admin.register(RateDiscount)
+class RateDiscountAdmin(GeneralAdmin):
+    list_display = ('text','percentage')
 
 ### PERSON_CLASSES.PY ###
 
@@ -181,8 +237,10 @@ class PersonAdmin(GeneralAdmin):
         MailInline,
         PhoneInline,
     ]
+    #search_fields = ('type',)
 
 ### RESERVATION_CLASSES ###
+
 
 @admin.register(TypePayment)
 class TypePaymentReservationAdmin(GeneralAdmin):
@@ -200,21 +258,28 @@ class PaymentReservationInLine(admin.StackedInline):
 
 @admin.register(LineReservation)
 class LineReservationAdmin(GeneralAdmin):
-    list_display = ('line_reservation','cost_price','sell_price',)
+    list_display = ('line_reservation','sell_price',)
+    readonly_fields = ('discounted','creation', 'last_modification',)
 
 class LineReservationInLine(admin.StackedInline):
     model = models.LineReservation
     fk_name = 'line_reservation'
     extra = 0
-    readonly_fields = ('creation', 'last_modification',)
+    readonly_fields = ('discounted','creation', 'last_modification',)
+
+def pdf_generation(modeladmin, request, queryset):
+    print('pdfgenerator')
 
 @admin.register(Reservation)
 class ReservationAdmin(GeneralAdmin):
     list_display = ('number_reservation','payment_state')
-    readonly_fields = ('number_reservation','total_payments','total_to_pay','total_costs','payment_state','creation', 'last_modification',)
+    readonly_fields = ('number_reservation','total_payments','sub_total_to_pay','total_to_pay','payment_state','creation', 'last_modification','total_costs')
     inlines = [
         LineReservationInLine,
         PaymentReservationInLine,
+    ]
+    actions = [
+        pdf_generation
     ]
 
 @admin.register(Tax)

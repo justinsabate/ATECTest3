@@ -3,10 +3,10 @@
 
 #from .product import ...
 
-from .product_classes import Product,AttributeProduct,Location,PriceProduct,ImageProduct,StockProduct,Rate
+from .product_classes import Product,AttributeProduct,Location,ImageProduct,StockProduct,Tax
 from .general import General, Action, Task
 from .person_classes import LanguagePerson,Person,Mail,Phone,TypePerson
-from .reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation,Tax
+from .reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount
 
 
 

@@ -40,8 +40,9 @@ class Person(General):
     language = models.ManyToManyField(LanguagePerson, blank=True)
     type = models.ForeignKey(
         TypePerson,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         blank=True,
+        null=True,
     )
     product = models.ManyToManyField(Product, blank=True)
 
@@ -57,7 +58,8 @@ class Mail(General):
     ### KEYS ###
     per = models.ForeignKey(
         Person,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True
     ) ### in order for a person to be able to have multiple Mails
 
     def get_cname(self):
@@ -72,7 +74,8 @@ class Phone(General):
     ### KEYS ###
     per = models.ForeignKey(
         Person,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True
     )### in order for a person to be able to have multiple Phone numbers
 
     def get_cname(self):
