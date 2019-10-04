@@ -135,7 +135,56 @@ class Task(General):
     def __str__(self):
         return str(self.description)
 
+class ATEC(General):
+    def get_cname(self):
+        class_name = 'ATEC'
+        return class_name
 
+    def __str__(self):
+        return str(self.field_name)
 
+    field_name = models.TextField(default='Tours ONG ATEC',null=True,blank=True)
+    field_cedjuri = models.TextField(default='Céd.Juri: 3-002-118055',null=True,blank=True)
+    field_tel_cellular = models.TextField(default='+(506) 8706-4758.',null=True,blank=True)
+    field_localisation = models.TextField(default='Frente a Farmacia Caribe, bajo Mopri, Puerto Viejo Limon',null=True,blank=True)
+    field_tel_officina = models.TextField(default='Teléfono: +(506) 2750-0398', null=True, blank=True)
+    field_mail = models.TextField(default='Email: ongatec@gmail.com', null=True, blank=True)
 
+    logo = models.ImageField(upload_to='app/static/img',default='ATEC_LOGO.png',null=True,blank=True)
+    size_logo = models.TextField(default="120", null=True, blank=True)
 
+    field_thanks = models.TextField(default='Thank you for booking and supporting our NGO ATEC!', null=True, blank=True)
+    field_recommandations = models.TextField(default='Recommendations: apply repellent and sun block, closed shoes, bottle of water, camera, snacks, cash and in cases apply swimming suit, towel, jaket',blank=True,null=True)
+
+    ###IMAGES###
+    image_1 = models.ImageField(upload_to='app/static/img',default='tripadvisor.jpeg',null=True,blank=True)
+    image_2 = models.ImageField(upload_to='app/static/img',default='fb.jpeg',null=True,blank=True)
+    image_3 = models.ImageField(upload_to='app/static/img',default='codeofconduct.jpeg',null=True,blank=True)
+    image_4 = models.ImageField(upload_to='app/static/img',default='ict.jpeg',null=True,blank=True)
+    image_5 = models.ImageField(upload_to='app/static/img',default='turismosostenible.jpeg',null=True,blank=True)
+
+    ###LINKS###
+    link_1 = models.TextField(default='https://www.tripadvisor.com.mx/Attraction_Review-g309265-d2209012-Reviews-ATEC_Talamancan_Association_of_Ecotourism_and_Conservation_Day_Tours-Puerto_Viejo.html', null=True, blank=True)
+    link_2 = models.TextField(default='https://www.facebook.com/ongatec/', null=True, blank=True)
+    link_3 = models.TextField(default='', null=True, blank=True)
+    link_4 = models.TextField(default='', null=True, blank=True)
+    link_5 = models.TextField(default='', null=True, blank=True)
+
+    ###SIZES###
+    size_1 = models.TextField(default="90", null=True, blank=True)
+    size_2 = models.TextField(default="90", null=True, blank=True)
+    size_3 = models.TextField(default="60", null=True, blank=True)
+    size_4 = models.TextField(default="30", null=True, blank=True)
+    size_5 = models.TextField(default="44", null=True, blank=True)
+
+class COUPON(General):
+    def get_cname(self):
+        class_name = 'COUPON'
+        return class_name
+
+    def __str__(self):
+        return str(self.numero)
+
+    numero = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='app/static/img',null=True,blank=True)
+    size = models.TextField(default="44", null=True, blank=True)

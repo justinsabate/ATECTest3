@@ -37,9 +37,9 @@ from .forms import RequiredInlineFormSet
 #     search_fields = ('name', 'fam_name', 'tarifa')
 import os
 from .models.product_classes import Product,AttributeProduct,Location,ImageProduct,StockProduct,Tax
-from .models.general import General,Action,Task,get_all_logged_in_users
-from .models.person_classes import LanguagePerson,Person,Mail,Phone,TypePerson
-from .models.reservation_classes import TypePayment, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount
+from .models.general import General,Action,Task,get_all_logged_in_users,ATEC,COUPON
+from .models.person_classes import LanguagePerson,TypePerson
+from .models.reservation_classes import Person,Phone,Mail,TypePayment, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount
 # class Type_ProductInline(admin.TabularInline): #nous permet d'afficher les réservations dans les clients
 #     model = Product.type.through
 
@@ -285,4 +285,12 @@ class ReservationAdmin(GeneralAdmin):
 @admin.register(Tax)
 class TaxAdmin(GeneralAdmin):
     list_display = ('year','percentage','text')
+
+@admin.register(ATEC)
+class ATECAdmin(GeneralAdmin):
+    list_display = ('field_name',)
+
+@admin.register(COUPON)
+class COUPONAdmin(GeneralAdmin):
+    list_display = ('numero',)
 

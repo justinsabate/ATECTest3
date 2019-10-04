@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_countries',
     'phonenumber_field',
     'address',
+    'wkhtmltopdf',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,4 +128,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 GOOGLE_API_KEY = 'AIzaSyD--your-google-maps-key-SjQBE'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
-MEDIA_URL ='/img/'
+MEDIA_URL ='/static/img/'

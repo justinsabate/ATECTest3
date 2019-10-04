@@ -1,0 +1,177 @@
+{% load static %}
+<html>
+<head>
+    <title>Reservation PDF</title>
+    <link href="{% static 'css/pdf_generation.css' %}" rel="stylesheet">
+
+    <style>
+        td {
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
+        .topcenter {
+          top:0px;
+          display: block;
+        }
+
+        .topleft {
+          position:absolute;
+          left:5px;
+          top:0px;
+        }
+
+        .topright {
+          position:absolute;
+          top:0px;
+          right:15px;
+        }
+
+        .bottom{
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+            bottom:0px;
+        }
+
+
+
+        .left {
+            float:left
+
+        }
+        .right {
+            float:right
+
+        }
+
+        #div-left {
+         float:left;
+        }
+
+        #div-right {
+         float:right;
+        }
+
+        #div-1c {
+         float:right;
+         width:190px;
+        }
+
+
+        .img-container-right {
+          float: right; /* three containers (use 25% for four, and 50% for two, etc) */
+          padding: 5%; /* if you want space between the images */
+        }
+        .img-container-left {
+
+        /* three containers (use 25% for four, and 50% for two, etc) */
+          padding: 4%; /* if you want space between the images */
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+       <div class="topleft">
+            <img width="20%" src="{{ATEC.logo.url}}"/>
+       </div>
+       <div align="center" class="topcenter" style="top:60px;">
+            {{ATEC.field_name}} <br>
+            {{ATEC.field_cedjuri}}<br>
+            {{ATEC.field_tel_cellular}}<br>
+            {{ATEC.field_localisation}}<br>
+            {{ATEC.field_tel_officina}}<br>
+            {{ATEC.field_mail}}
+       </div>
+      <div align="right" class="topright" style="top:0px;">
+            <h3>
+                Receipt of<br> Reservation N° {{reservation.number_reservation}}
+            </h3>
+      </div>
+
+
+    <div>
+        <HR>
+    </div>
+
+    <table>
+
+        <tr>
+            <th>FACTURAR A</th>
+            <th>RESERVATION NAME</th>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </table>
+       <div>
+        <HR>
+    </div>
+    <div>
+        Coordonnées personne ou agence...
+    </div>
+   <table>
+   <th>Tour</th>
+    <th>Client</th>
+   <th>Start Date</th>
+   <th>End Date</th>
+   <th>Guide</th>
+   <th>Lang</th>
+   <th>QTY</th>
+   <th>Rate</th>
+   <th>Tax</th>
+   <th>Unit price</th>
+   <th>Discount</th>
+   <th>Total</th>
+   {% for line in lines %}
+    <tr>
+        <td>{{ line.get_product_name }}</td>
+        <td>{{ line.get_client_name }} </td>
+        <td>{{ line.date_start }}</td>
+        <td>{{ line.date_end }}</td>
+        <td>{{ line.get_guide_name }}</td>
+        <td>{{ line.language_reservation }} </td>
+        <td>{{ line.quantity }}</td>
+        <td>{{ line.get_agediscount_name }}</td>
+        <td>{{ line.get_tax }}%</td>
+        <td>{{ line.get_unit_price }}$</td>
+        <td>{{ line.get_discount }}$</td>
+        <td>{{ line.get_discounted }}$</td>
+    </tr>
+   {% endfor %}
+    </table>
+    <div align="right">
+        <br>
+        <br>
+        Credit Card/Paypal (7%) = <br>
+        TOTAL = {{reservation.get_total_to_pay}}$
+    </div>
+    <div>
+        <HR>
+    </div>
+    <div>
+        <h3 align="center">{{ATEC.field_thanks}}</h3>
+        <h5 align="center">{{ATEC.field_recommandations}}</h5>
+    </div>
+    <div class="bottom" >
+        <a href={{ATEC.link_1}}> <img class="img-container-left" width={{ATEC.size_1}}  src="{{ATEC.image_1.url}}" /></a>
+        <a href={{ATEC.link_2}}> <img  class="img-container-left" width={{ATEC.size_2}} src="{{ATEC.image_2.url}}"/></a>
+        <a href={{ATEC.link_3}}> <img  class="img-container-left" width={{ATEC.size_3}}  src="{{ATEC.image_3.url}}"/></a>
+        <a href={{ATEC.link_4}}> <img  class="img-container-left" width={{ATEC.size_4}}  src="{{ATEC.image_4.url}}"/></a>
+        <a href={{ATEC.link_5}}> <img  class="img-container-left" width={{ATEC.size_5}}  src="{{ATEC.image_5.url}}"/></a>
+    </div>
+<div class="bottom"  align="right" >
+
+    <a href="https://ateccr.org"> Visit our Website © ateccr.org </a>
+
+
+</div>
+</body>
+
+</html>

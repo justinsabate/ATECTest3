@@ -1,0 +1,61 @@
+.topcenter {
+  top:0px;
+  display: block;
+}
+
+.topleft {
+  position:absolute;
+  left:5px;
+  top:0px;
+}
+
+.topright {
+  position:absolute;
+  top:0px;
+  right:15px;
+}
+
+.bottom{
+position: absolute;
+margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+    bottom:0px;
+}
+
+
+
+.left {
+    float:left
+
+}
+.right {
+    float:right
+
+}
+
+#div-left {
+ float:left;
+}
+
+#div-right {
+ float:right;
+}
+
+#div-1c {
+ float:right;
+ width:190px;
+}
+
+
+.img-container-right {
+  float: right; /* three containers (use 25% for four, and 50% for two, etc) */
+  padding: 5%; /* if you want space between the images */
+}
+.img-container-left {
+
+/* three containers (use 25% for four, and 50% for two, etc) */
+  padding: 4%; /* if you want space between the images */
+
+}
