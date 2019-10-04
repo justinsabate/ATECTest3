@@ -181,57 +181,24 @@ class Reservation(General):
 
             for e in all_lines:
                 try:
-                    sp = PriceProduct.objects.filter(lineXprice=e) ##this one is unique
-
-                    ### For Children reduction
-                    try:
-                        agedisc = sp.agediscount
-                        age_percentage = agedisc.percentage
-                    except:
-                        age_percentage = 0
-                    print('Age percentage '+str(age_percentage))
-                    intermediate_sell_price = sp[0].rack - (sp[0].rack * age_percentage / 100)
-
-                    ### For agency reduction
-                    try:
-                        ratedisc = RateDiscount.objects.filter(ratediscount=sp[0])
-                        rate_percentage = ratedisc[0].percentage
-                    except:
-                        rate_percentage = 0
-                    print('Rate percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * rate_percentage / 100)
-
-                    ### For special offer reduction
-                    try:
-                        print('Special offer percentage ' + str(specialoffer_percent_discount))
-                    except:
-                        specialoffer_percent_discount = 0
-                        print('Special offer percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * specialoffer_percent_discount / 100)
-
-                    ### Quantity multiplication
-                    intermediate_sell_price = intermediate_sell_price*e.quantity
-                    ### Add calculated total to line
-                    e.discounted = intermediate_sell_price
-                    super(General, e).save(*args, **kwargs)  ###TOADD
-                    ### Add if to total
-                    total_sell_price += intermediate_sell_price
+                    e.discounted = e.get_discounted()
+                    super(General, e).save(*args, **kwargs)
+                    total_sell_price += e.discounted
                     print('sell price added to total')
-
-
                 except:
                     print('No sell price for line'+str(e))
-                #total_cost_price += e.cost_price
+
             for f in all_prices:
                 total_payment_price += f.price
 
             # Update of payment and to pay
             self.total_payments = total_payment_price
             self.sub_total_to_pay = total_sell_price #subtotal without tax
+            self.total_to_pay = self.sub_total_to_pay  # subtotal without tax
 
-            ### Tax payment
-            this_tax = Tax.objects.filter(reservationXtax=self)
-            self.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
+            # ### Tax payment
+            # this_tax = Tax.objects.filter(reservationXtax=self)
+            # self.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
 
             # Update of payment state
             if self.total_to_pay == total_payment_price:
@@ -344,57 +311,24 @@ class PaymentReservation(General):  ###created only when a client has paid
 
             for e in all_lines:
                 try:
-                    sp = PriceProduct.objects.filter(lineXprice=e) ##this one is unique
-
-                    ### For Children reduction
-                    try:
-                        agedisc = sp.agediscount
-                        age_percentage = agedisc.percentage
-                    except:
-                        age_percentage = 0
-                    print('Age percentage '+str(age_percentage))
-                    intermediate_sell_price = sp[0].rack - (sp[0].rack * age_percentage / 100)
-
-                    ### For agency reduction
-                    try:
-                        ratedisc = RateDiscount.objects.filter(ratediscount=sp[0])
-                        rate_percentage = ratedisc[0].percentage
-                    except:
-                        rate_percentage = 0
-                    print('Rate percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * rate_percentage / 100)
-
-                    ### For special offer reduction
-                    try:
-                        print('Special offer percentage ' + str(specialoffer_percent_discount))
-                    except:
-                        specialoffer_percent_discount = 0
-                        print('Special offer percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * specialoffer_percent_discount / 100)
-
-                    ### Quantity multiplication
-                    intermediate_sell_price = intermediate_sell_price*e.quantity
-                    ### Add calculated total to line
-                    e.discounted = intermediate_sell_price
-                    super(General, e).save(*args, **kwargs)  ###TOADD
-                    ### Add if to total
-                    total_sell_price += intermediate_sell_price
+                    e.discounted = e.get_discounted()
+                    super(General, e).save(*args, **kwargs)
+                    total_sell_price += e.discounted
                     print('sell price added to total')
-
-
                 except:
                     print('No sell price for line'+str(e))
-                #total_cost_price += e.cost_price
+
             for f in all_prices:
                 total_payment_price += f.price
 
             # Update of payment and to pay
             this_reservation.total_payments = total_payment_price
             this_reservation.sub_total_to_pay = total_sell_price #subtotal without tax
+            this_reservation.total_to_pay = this_reservation.sub_total_to_pay
 
-            ### Tax payment
-            this_tax = Tax.objects.filter(reservationXtax=this_reservation)
-            this_reservation.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
+            # ### Tax payment
+            # this_tax = Tax.objects.filter(reservationXtax=this_reservation)
+            # this_reservation.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
 
             # Update of payment state
             if total_sell_price == total_payment_price:
@@ -634,60 +568,23 @@ class LineReservation(General):
 
             for e in all_lines:
                 try:
-                    sp = PriceProduct.objects.filter(lineXprice=e) ##this one is unique
-                    try:
-                        #agedisc = sp.agediscount
-                        agedisc = AgeDiscount.objects.filter(agediscount=sp[0])
-                        age_percentage = agedisc[0].percentage
-                    except:
-                        age_percentage = 0
-                        print('error agedisc')
-                    print('Age percentage '+str(age_percentage))
-                    intermediate_sell_price = sp[0].rack - (sp[0].rack * age_percentage / 100)
-
-                    ### For agency reduction
-                    try:
-                        #ratedisc = sp.ratediscount
-                        ratedisc = RateDiscount.objects.filter(ratediscount=sp[0])
-                        rate_percentage = ratedisc[0].percentage
-                    except:
-                        rate_percentage = 0
-                    print('Rate percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * rate_percentage / 100)
-
-                    ### For special offer reduction
-                    try:
-                        print('Special offer percentage ' + str(specialoffer_percent_discount))
-                    except:
-                        specialoffer_percent_discount = 0
-                        print('Special offer percentage ' + str(rate_percentage))
-                    intermediate_sell_price = intermediate_sell_price - (intermediate_sell_price * specialoffer_percent_discount / 100)
-
-                    ### Quantity multiplication
-                    intermediate_sell_price = intermediate_sell_price*e.quantity
-                    ### Add calculated total to line
-                    e.discounted = intermediate_sell_price
-
-                    super(General, e).save(*args, **kwargs) ###TOADD
-
-                    ### Add if to total
-                    total_sell_price += intermediate_sell_price
+                    e.discounted = e.get_discounted()
+                    super(General, e).save(*args, **kwargs)
+                    total_sell_price += e.discounted
                     print('sell price added to total')
-
-
                 except:
                     print('No sell price for line'+str(e))
-                #total_cost_price += e.cost_price
+
             for f in all_prices:
                 total_payment_price += f.price
 
             # Update of payment and to pay
             this_reservation.total_payments = total_payment_price
             this_reservation.sub_total_to_pay = total_sell_price #subtotal without tax
-
-            ### Tax payment
-            this_tax = Tax.objects.filter(reservationXtax=this_reservation)
-            this_reservation.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
+            this_reservation.total_to_pay = this_reservation.sub_total_to_pay
+            # ### Tax payment
+            # this_tax = Tax.objects.filter(reservationXtax=this_reservation)
+            # this_reservation.total_to_pay = total_sell_price*(1+(this_tax[0].percentage/100))
 
             # Update of payment state
             if this_reservation.total_to_pay == total_payment_price:
@@ -702,50 +599,4 @@ class LineReservation(General):
                 #return ''
             super(General, this_reservation).save(*args, **kwargs)
 
-
-
-    # FORMER
-    # def updt_payment_state(self, this_reservation, *args, **kwargs): ### (doubled the function to be able to use self.thisfunction in general where we cant import those classes (circular import) if a paymentstate is on stand by we will not do anything
-    #     if this_reservation.payment_state != 'SB':
-    #         all_lines = LineReservation.objects.filter(line_reservation=this_reservation)
-    #         all_prices = PaymentReservation.objects.filter(payment_reservation=this_reservation)
-    #         total_sell_price = 0
-    #         total_payment_price = 0
-    #         total_cost_price = 0
-    #         for e in all_lines: ### add if agencia
-    #             try:
-    #                 sp = PriceProduct.objects.filter(lineXprice=e)
-    #
-    #                 try:
-    #                     lr = e.lineXrate
-    #                     perc = lr.percentage
-    #                 except:
-    #                     perc = 0
-    #
-    #                 intermediate_sell_price = sp[0].net - (sp[0].net * sp[0].percent_discount / 100)  #### have to add a total payment price somewhere
-    #                 total_sell_price += intermediate_sell_price - intermediate_sell_price*perc/100
-    #                 print('sell price added to total')
-    #             except:
-    #                 print('No sell price for line'+str(e))
-    #             total_cost_price += e.cost_price
-    #         for f in all_prices:
-    #             total_payment_price += f.price
-    #
-    #         # Update of payment and to pay
-    #         this_reservation.total_payments = total_payment_price
-    #         this_reservation.total_to_pay = total_sell_price
-    #         this_reservation.total_costs = total_cost_price
-    #
-    #         if total_sell_price == total_payment_price:
-    #             this_reservation.payment_state = 'P'
-    #             print('changed reservation to paid')
-    #
-    #             #return '[AUTOMATIC SAVE]'
-    #         else:
-    #             this_reservation.payment_state = 'W'
-    #             print('changed reservation to waiting for payment')
-    #             #return ''
-    #         this_reservation.save(update_fields=['payment_state', 'total_costs', 'total_to_pay', 'total_payments'])
-    #
-    #         #this_reservation.save()
 
