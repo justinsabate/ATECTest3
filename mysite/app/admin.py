@@ -229,16 +229,14 @@ class PhoneInline(admin.StackedInline):
     readonly_fields = ('creation', 'last_modification',)
     formset = RequiredInlineFormSet
 
-# class UserInline(admin.StackedInline):
-#     model = User
-#     extra = 1
+
 
 
 @admin.register(Person)
 class PersonAdmin(GeneralAdmin):
     list_display = ('type','name','NIN','nationality')
     inlines = [
-        #UserInline,
+
         MailInline,
         PhoneInline,
     ]
@@ -250,6 +248,7 @@ class PersonInline(admin.StackedInline):
     verbose_name_plural = 'Personal Informations (Person model)'
 
 # Define a new User admin
+
 class UserAdmin(BaseUserAdmin):
     inlines = (PersonInline,)
 

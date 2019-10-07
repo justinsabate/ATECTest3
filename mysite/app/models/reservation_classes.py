@@ -11,14 +11,26 @@ from django_countries.fields import CountryField
 from .product_classes import Location,Product
 from phonenumber_field.modelfields import PhoneNumberField
 import datetime
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 #### persons
+
+
+def get_user_type(obj):
+    try :
+        pers = Person.objects.get(user=obj)
+        typ = TypePerson.objects.get(typeXper=pers)
+        return typ.type
+    except:
+        print('no person linked to this username')
+        return 'type UNDEFINED'
+
 
 class Person(General):
     def __str__(self):
         return '['+str(self.type)+'] '+self.name
 
-    user = models.OneToOneField(User, on_delete=models.SET_NULL,null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL,null=True, blank=True,related_name='userXperson')
 
 
     NIN = models.IntegerField(blank=True,null=True)#National identification number

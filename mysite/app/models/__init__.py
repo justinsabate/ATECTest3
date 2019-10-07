@@ -6,7 +6,7 @@
 from .product_classes import Product,AttributeProduct,Location,ImageProduct,StockProduct,Tax
 from .general import General, Action, Task,ATEC,COUPON
 from .person_classes import LanguagePerson,TypePerson
-from .reservation_classes import TypePayment,Mail,Phone,Person, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount
+from .reservation_classes import TypePayment,Mail,Phone,Person, PaymentReservation, Reservation,LineReservation,PriceProduct, Rate,AgeDiscount,RateDiscount,get_user_type
 
 
 

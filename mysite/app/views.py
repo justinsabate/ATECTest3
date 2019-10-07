@@ -3,13 +3,14 @@ from .models.reservation_classes import Reservation,LineReservation,PriceProduct
 from .models.general import ATEC,COUPON
 from django.http import HttpResponse
 from django.views.generic import View
-from .models.reservation_classes import Person,LanguagePerson
+from .models.reservation_classes import Person,LanguagePerson,get_user_type
 import math
 # importing get_template from loader
 from django.template.loader import get_template
 
 # import render_to_pdf from util.py
 from .utils import render_to_pdf
+
 
 
 # Creating PDF
@@ -62,4 +63,11 @@ def before_PDF(request,number_reservation):
 
     return render(request,'app/pdf_test.html', {'reservation': reservation, 'lines': lines,'ATEC':atec[0]})
 
+def home(request):
+
+    if request.user.is_authenticated:
+        type = get_user_type(request.user)
+    else :
+        type = 'type UNDEFINED'
+    return render(request,'app/home/home.html', {'type': type})
 
