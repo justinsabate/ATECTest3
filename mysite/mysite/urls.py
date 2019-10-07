@@ -19,9 +19,13 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls')),
+    path('',include('app.urls_accounts')),
+    path('',include('app.urls_home')),
 ]
 ###pour le chargement des images
 

@@ -34,9 +34,9 @@ class GeneratePdf(View):
 
             if coupon != 0:
                 coup = COUPON.objects.get(numero=coupon)
-                pdf = render_to_pdf('pdf_client.html',{'reservation': reservation, 'lines': lines,'ATEC':atec_0,'client':client,'line':line,'total_to_pay':total_to_pay,'coupon':coup})
+                pdf = render_to_pdf('app/pdf/pdf_client.html',{'reservation': reservation, 'lines': lines,'ATEC':atec_0,'client':client,'line':line,'total_to_pay':total_to_pay,'coupon':coup})
             else: ### we do not give the information to HTML so it cant put the image
-                pdf = render_to_pdf('pdf_client.html',
+                pdf = render_to_pdf('app/pdf/pdf_client.html',
                                     {'reservation': reservation, 'lines': lines, 'ATEC': atec_0, 'client': client,
                                      'line': line, 'total_to_pay': total_to_pay})
 
@@ -46,9 +46,9 @@ class GeneratePdf(View):
             total_to_pay=reservation.get_total_to_pay_RESERVATION()
             if coupon != 0:
                 coup = COUPON.objects.get(numero=coupon)
-                pdf = render_to_pdf('pdf_reservation.html',{'reservation': reservation, 'lines': lines,'ATEC':atec_0,'total_to_pay':total_to_pay,'coupon':coup})
+                pdf = render_to_pdf('app/pdf/pdf_reservation.html',{'reservation': reservation, 'lines': lines,'ATEC':atec_0,'total_to_pay':total_to_pay,'coupon':coup})
             else:
-                pdf = render_to_pdf('pdf_reservation.html', {'reservation': reservation, 'lines': lines, 'ATEC': atec_0,
+                pdf = render_to_pdf('app/pdf/pdf_reservation.html', {'reservation': reservation, 'lines': lines, 'ATEC': atec_0,
                                                              'total_to_pay': total_to_pay})
 
         # rendering the template

@@ -11,11 +11,16 @@ from django_countries.fields import CountryField
 from .product_classes import Location,Product
 from phonenumber_field.modelfields import PhoneNumberField
 import datetime
+from django.contrib.auth.models import User
 #### persons
 
 class Person(General):
     def __str__(self):
         return '['+str(self.type)+'] '+self.name
+
+    user = models.OneToOneField(User, on_delete=models.SET_NULL,null=True, blank=True)
+
+
     NIN = models.IntegerField(blank=True,null=True)#National identification number
     name = models.CharField(default='', max_length=100)
     fam_name = models.CharField(default='', max_length=100, blank=True, null=True)
